@@ -15,13 +15,16 @@ def BST_add_node(root, node):
     #node 已存在
     if node[0] in nums:
         return root
-    if root[0] == node[0]:
-        return root
+    #root 不存在
+    if root is None:
+        return node
+    #node > root
     if root[0] > node[0]:
         if root[2] is None:
             root[2] = node[:]
         else:
             return BST_add_node(root[2], node)
+    #node < root
     if root[0] < node[0]:
         if root[3] is None:
             root[3] = node[:]
@@ -103,17 +106,20 @@ def B_max_h_add_node(root, node):
     if root[0] < node[0]:
         node[2] = root
         return node
+    #None in root
     if root[2] is None:
         root[2] = node
         return root
-    if root[3] is None:
+    elif root[3] is None:
         root[3] = node
         return root
+    #子節點 < node
     if root[2][0] > node[0]:
         return B_max_h_add_node(root[2], node)
-    if root[3][0] > node[0]:
+    elif root[3][0] > node[0]:
         return B_max_h_add_node(root[3], node)
-    root[2] = B_max_h_add_node(root[2], node)
+    else:#子節點 > node
+        root[2] = B_max_h_add_node(root[2], node)
     nums.add(node[0])
     return root
     
