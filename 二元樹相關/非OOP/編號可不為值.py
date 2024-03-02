@@ -6,7 +6,51 @@ btree = [
     None    #右子節點
         ]
 
+####################################################################################################
+
+#走訪
+
+####################################################################################################
+
+#前序走訪
+t_f = []  #儲存走過的
+def front(root):
+    global t_f
+    if not root is None:
+        t_f.append(root[1])
+        if not root[2] is None:
+            front(root[2])
+        if not root[3] is None:
+            front(root[3])
+
+#中序走訪
+t_m = []  #儲存走過的
+def mid(root):
+    global t_m
+    if not root is None:
+        if not root[2] is None:
+            mid(root[2])
+        t_m.append(root[1])
+        if not root[3] is None:
+            mid(root[3])
+
+#後序走訪
+
+t_b = []  #儲存走過的
+def back(root):
+    global t_b
+    if not root is None:
+        if not root[2] is None:
+            back(root[2])
+        if not root[3] is None:
+            back(root[3])
+        t_b.append(root[1])
+
+####################################################################################################
+
 #二元搜尋樹
+
+####################################################################################################
 
 #新增元素
 nums = set()#已用過的編號
@@ -43,49 +87,28 @@ for i in [
     BST_add_node(bst, [i,i,None,None])
 print(bst)
 
-#前序走訪
-t_f = []  #儲存走過的
+####################################################################################################
 
-def front(root):
-    global t_f
-    if not root is None:
-        t_f.append(root[1])
-        if not root[2] is None:
-            front(root[2])
-        if not root[3] is None:
-            front(root[3])
+#前序走訪
+t_f = []
 front(bst)
 print(t_f)
 
 #中序走訪
-t_m = []  #儲存走過的
-
-def mid(root):
-    global t_m
-    if not root is None:
-        if not root[2] is None:
-            mid(root[2])
-        t_m.append(root[1])
-        if not root[3] is None:
-            mid(root[3])
+t_m = []
 mid(bst)
 print(t_m)
 
 #後序走訪
-t_b = []  #儲存走過的
-
-def back(root):
-    global t_b
-    if not root is None:
-        if not root[2] is None:
-            back(root[2])
-        if not root[3] is None:
-            back(root[3])
-        t_b.append(root[1])
+t_b = []
 back(bst)
 print(t_b)
 
+####################################################################################################
+
 #二元堆積樹
+
+####################################################################################################
 
 #最大堆積樹
 
@@ -143,6 +166,8 @@ print(t_m)
 t_b = []  #儲存走過的
 back(b_max_h)
 print(t_b)
+
+####################################################################################################
 
 #最小堆積樹
 

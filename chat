@@ -1,0 +1,25 @@
+
+class linked_list():
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+
+    def print_all(self):
+        print(self.val)
+        if self.next is not None:
+            self.next.print_all()
+
+    def append(self, num):
+        if self.next is not None:
+            self.next.append(num)
+        else:
+            self.next = linked_list(num)
+
+nums = [1, 2, 3, 4, 5]
+
+a = linked_list(0)
+
+for num in nums:
+    a.append(num)
+
+a.print_all()
