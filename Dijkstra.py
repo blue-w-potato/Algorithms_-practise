@@ -157,5 +157,5 @@ for r in range(int(input())):
         # 找下一個節點
         node = find_lowest_cost_node(costs)
 
-
+    # 輸出終點的成本
     print(costs["fin"])
