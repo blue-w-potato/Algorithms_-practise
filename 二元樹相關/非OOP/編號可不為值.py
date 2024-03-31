@@ -114,7 +114,7 @@ print(t_b)
 
 #新增元素
 nums = set()#已用過的編號
-def B_max_h_add_node(root, node):
+def max_heap_tree_add_node(root, node):
     global nums
     #node 已存在
     if node[0] in nums:
@@ -138,33 +138,33 @@ def B_max_h_add_node(root, node):
         return root
     #子節點 < node
     if root[2][0] > node[0]:
-        return B_max_h_add_node(root[2], node)
+        return max_heap_tree_add_node(root[2], node)
     elif root[3][0] > node[0]:
-        return B_max_h_add_node(root[3], node)
+        return max_heap_tree_add_node(root[3], node)
     else:#子節點 > node
-        root[2] = B_max_h_add_node(root[2], node)
+        root[2] = max_heap_tree_add_node(root[2], node)
     nums.add(node[0])
     return root
     
-b_max_h = [5, 5, None, None]
+max_heap_tree = [5, 5, None, None]
 nums.add(5)
 for i in range(1, 11):
-    b_max_h = B_max_h_add_node(b_max_h, [i,i,None,None])
-print(b_max_h)
+    max_heap_tree = max_heap_tree_add_node(max_heap_tree, [i,i,None,None])
+print(max_heap_tree)
 
 #前序走訪
 t_f = []  #儲存走過的
-front(b_max_h)
+front(max_heap_tree)
 print(t_f)
 
 #中序走訪
 t_m = []  #儲存走過的
-mid(b_max_h)
+mid(max_heap_tree)
 print(t_m)
 
 #後序走訪
 t_b = []  #儲存走過的
-back(b_max_h)
+back(max_heap_tree)
 print(t_b)
 
 ####################################################################################################
@@ -173,7 +173,7 @@ print(t_b)
 
 #新增元素
 nums = set()#已用過的編號
-def B_min_h_add_node(root, node):
+def min_heap_tree_add_node(root, node):
     global nums
     #node 已存在
     if node[0] in nums:
@@ -194,31 +194,31 @@ def B_min_h_add_node(root, node):
         return root
     #子節點 < node
     if root[2][0] < node[0]:
-        root[2] = B_min_h_add_node(root[2], node)
+        root[2] = min_heap_tree_add_node(root[2], node)
     elif root[3][0] < node[0]:
-        root[3] =  B_min_h_add_node(root[3], node)
+        root[3] =  min_heap_tree_add_node(root[3], node)
     else:#子節點 > node
-        root[2] = B_min_h_add_node(root[2], node)
+        root[2] = min_heap_tree_add_node(root[2], node)
     nums.add(node[0])
     return root
     
-b_min_h = [5, 5, None, None]
+min_heap_tree = [5, 5, None, None]
 nums.add(5)
 for i in range(1, 11):
-    b_min_h = B_min_h_add_node(b_min_h, [i,i,None,None])
-print(b_min_h)
+    min_heap_tree = min_heap_tree_add_node(min_heap_tree, [i,i,None,None])
+print(min_heap_tree)
 
 #前序走訪
 t_f = []  #儲存走過的
-front(b_min_h)
+front(min_heap_tree)
 print(t_f)
 
 #中序走訪
 t_m = []  #儲存走過的
-mid(b_min_h)
+mid(min_heap_tree)
 print(t_m)
 
 #後序走訪
 t_b = []  #儲存走過的
-back(b_min_h)
+back(min_heap_tree)
 print(t_b)
