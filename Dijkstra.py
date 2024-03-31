@@ -22,12 +22,12 @@
 # n筆資料
 for r in range(int(input())):
     
-    # 共 wei 列
-    wei = int(input())
-    # 共 ru 行
-    ru = int(input())
+    # 共 w 列
+    w = int(input())
+    # 共 r 行
+    r = int(input())
     # 每一列的數字
-    array = [ list(map( int, input().strip().split() )) for i in range(wei) ]
+    array = [ list(map( int, input().strip().split() )) for i in range(w) ]
     
     # 轉成圖形
     
@@ -39,8 +39,8 @@ for r in range(int(input())):
     graph['start']['0-0'] = array[0][0]
     
     # 各節點
-    for i in range( wei ):
-        for j in range( ru ):
+    for i in range( w ):
+        for j in range( r ):
             
             # 當前節點會是其他節點的父節點
             graph[f'{i}-{j}'] = {} 
