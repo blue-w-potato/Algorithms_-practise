@@ -65,11 +65,14 @@ def test_2():
 
 def backpack_dp( backpack, *arg ):
     
+    # 0 是沒放東西時的情況
+    arg = [0]+list(arg)
+    
     # 紀錄每個背包大小能裝的量 的二維串列
-    dp = [ [ 0 for i in range( backpack ) ] for j in range( len( arg ) ) ]
+    dp = [ [ 0 for i in range( backpack+1 ) ] for j in range( len( arg ) ) ]
     
     for i in range( 1, len( arg ) ):    # i 為 每個東西的體積
-        for j in range( 1, backpack ):  # j 為 背包的容量
+        for j in range( 1, backpack+1 ):  # j 為 背包的容量
             
             if j < arg[i]:  # 如果放不進去
                 dp[i][j] = dp[i-1][j]   # 那就不要放
