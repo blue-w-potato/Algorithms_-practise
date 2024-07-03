@@ -13,36 +13,36 @@ btree = [
 
 #前序走訪
 t_f = []  #儲存走過的
-def front(root):
+def pre_order(root):
     global t_f
     if not root is None:
         t_f.append(root[0])
         if not root[1] is None:
-            front(root[1])
+            pre_order(root[1])
         if not root[2] is None:
-            front(root[2])
+            pre_order(root[2])
 
 #中序走訪
 t_m = []  #儲存走過的
-def mid(root):
+def in_order(root):
     global t_m
     if not root is None:
         if not root[1] is None:
-            mid(root[1])
+            in_order(root[1])
         t_m.append(root[0])
         if not root[2] is None:
-            mid(root[2])
+            in_order(root[2])
 
 #後序走訪
 
 t_b = []  #儲存走過的
-def back(root):
+def post_order(root):
     global t_b
     if not root is None:
         if not root[1] is None:
-            back(root[1])
+            post_order(root[1])
         if not root[2] is None:
-            back(root[2])
+            post_order(root[2])
         t_b.append(root[0])
 
 ####################################################################################################
@@ -90,17 +90,17 @@ for i in [
 
 #前序走訪
 t_f = []
-front(bst)
+pre_order(bst)
 #print(t_f)
 
 #中序走訪
 t_m = []
-mid(bst)
+in_order(bst)
 #print(t_m)
 
 #後序走訪
 t_b = []
-back(bst)
+post_order(bst)
 #print(t_b)
 
 ####################################################################################################
@@ -113,7 +113,7 @@ back(bst)
 
 #新增元素
 nums = set()#已用過的編號
-def B_max_h_add_node(root, node):
+def post_inax_h_add_node(root, node):
     global nums
     #node 已存在
     if node[0] in nums:
@@ -137,33 +137,33 @@ def B_max_h_add_node(root, node):
         return root
     #子節點 < node
     if root[1][0] > node[0]:
-        return B_max_h_add_node(root[1], node)
+        return post_inax_h_add_node(root[1], node)
     elif root[2][0] > node[0]:
-        return B_max_h_add_node(root[2], node)
+        return post_inax_h_add_node(root[2], node)
     else:#子節點 > node
-        root[1] = B_max_h_add_node(root[1], node)
+        root[1] = post_inax_h_add_node(root[1], node)
     nums.add(node[0])
     return root
     
-b_max_h = [5, None, None]
+post_inax_h = [5, None, None]
 nums.add(5)
 for i in range(1, 11):
-    b_max_h = B_max_h_add_node(b_max_h, [i,None,None])
-#print(b_max_h)
+    post_inax_h = post_inax_h_add_node(post_inax_h, [i,None,None])
+#print(post_inax_h)
 
 #前序走訪
 t_f = []  #儲存走過的
-front(b_max_h)
+pre_order(post_inax_h)
 #print(t_f)
 
 #中序走訪
 t_m = []  #儲存走過的
-mid(b_max_h)
+in_order(post_inax_h)
 #print(t_m)
 
 #後序走訪
 t_b = []  #儲存走過的
-back(b_max_h)
+post_order(post_inax_h)
 #print(t_b)
 
 ####################################################################################################
@@ -172,7 +172,7 @@ back(b_max_h)
 
 #新增元素
 nums = set()#已用過的編號
-def B_min_h_add_node(root, node):
+def post_inin_h_add_node(root, node):
     global nums
     #node 已存在
     if node[0] in nums:
@@ -193,33 +193,33 @@ def B_min_h_add_node(root, node):
         return root
     #子節點 < node
     if root[1][0] < node[0]:
-        root[1] = B_min_h_add_node(root[1], node)
+        root[1] = post_inin_h_add_node(root[1], node)
     elif root[2][0] < node[0]:
-        root[2] =  B_min_h_add_node(root[2], node)
+        root[2] =  post_inin_h_add_node(root[2], node)
     else:#子節點 > node
-        root[1] = B_min_h_add_node(root[1], node)
+        root[1] = post_inin_h_add_node(root[1], node)
     nums.add(node[0])
     return root
 
-b_min_h = [5, None, None]
+post_inin_h = [5, None, None]
 nums.add(5)
 for i in range(1, 11):
-    b_min_h = B_min_h_add_node(b_min_h, [i,None,None])
-#print(b_min_h)
+    post_inin_h = post_inin_h_add_node(post_inin_h, [i,None,None])
+#print(post_inin_h)
 
 #前序走訪
 t_f = []  #儲存走過的
-front(b_min_h)
+pre_order(post_inin_h)
 #print(t_f)
 
 #中序走訪
 t_m = []  #儲存走過的
-mid(b_min_h)
+in_order(post_inin_h)
 #print(t_m)
 
 #後序走訪
 t_b = []  #儲存走過的
-back(b_min_h)
+post_order(post_inin_h)
 #print(t_b)
 
 ####################################################################################################
@@ -235,90 +235,90 @@ class mktree_by_Traversal():
     #   三種走訪都要以串列表示
 
     #已知 前 + 中
-    def f_m( front, mid ):
+    def pre_in( pre_order, in_order ):
         
         #如果長度 < 2
-        if len( front ) == 0:
+        if len( pre_order ) == 0:
             return None
-        if len( front ) == 1:
-            return front + [ None, None ]
+        if len( pre_order ) == 1:
+            return pre_order + [ None, None ]
         
         # 前序走訪 第一個值為 根節點
-        root = front[0]
+        root = pre_order[0]
         
         # 中序走訪 根節點 左側為 左子樹，右側為 右子樹
-        root_m_index = mid.index( root )
-        m_left = mid[ : root_m_index ]
-        m_right = mid[ root_m_index+1 : ]
+        root_m_index = in_order.index( root )
+        m_left = in_order[ : root_m_index ]
+        m_right = in_order[ root_m_index+1 : ]
         
         # 前序走訪 順序為 根 左 右
         left_long = len( m_left )
-        f_left = front[ 1 : left_long + 1 ]
-        f_right = front[ left_long + 1 : ]
+        f_left = pre_order[ 1 : left_long + 1 ]
+        f_right = pre_order[ left_long + 1 : ]
         
         #建立左子樹
-        left = mktree_by_Traversal.f_m( f_left, m_left )
+        left = mktree_by_Traversal.pre_in( f_left, m_left )
         
         #建立右子樹
-        right = mktree_by_Traversal.f_m( f_right, m_right )
+        right = mktree_by_Traversal.pre_in( f_right, m_right )
         
         #建立樹
         tree = [ root, left, right ]
         return tree
     
     #已知 後 + 中
-    def b_m( back, mid ):
+    def post_in( post_order, in_order ):
         
         #如果長度 < 2
-        if len( back ) == 0:
+        if len( post_order ) == 0:
             return None
-        if len( back ) == 1:
-            return back + [ None, None ]
+        if len( post_order ) == 1:
+            return post_order + [ None, None ]
         
         # 後序走訪 最後一個值為 根節點
-        root = back[-1]
+        root = post_order[-1]
         
         # 中序走訪 根節點 左側為 左子樹，右側為 右子樹
-        root_m_index = mid.index( root )
-        m_left = mid[ : root_m_index ]
-        m_right = mid[ root_m_index+1 : ]
+        root_m_index = in_order.index( root )
+        m_left = in_order[ : root_m_index ]
+        m_right = in_order[ root_m_index+1 : ]
         
         # 後序走訪 順序為 左 右 根
         left_long = len( m_left )
-        b_left = back[ : left_long ]
-        b_right = back[ left_long : -1 ]
+        b_left = post_order[ : left_long ]
+        b_right = post_order[ left_long : -1 ]
         
         #建立左子樹
-        left = mktree_by_Traversal.b_m( b_left, m_left )
+        left = mktree_by_Traversal.post_in( b_left, m_left )
         
         #建立右子樹
-        right = mktree_by_Traversal.b_m( b_right, m_right )
+        right = mktree_by_Traversal.post_in( b_right, m_right )
         
         #建立樹
         tree = [ root, left, right ]
         return tree
 
-b_tree_front = '0,1,3,6,4,7,2,5,8,9'.split(',')
-b_tree_mid   = '6,3,1,7,4,0,2,8,5,9'.split(',')
-b_tree_back  = '6,3,7,4,1,8,9,5,2,0'.split(',')
+b_tree_pre_order = '0,1,3,6,4,7,2,5,8,9'.split(',')
+b_tree_in_order   = '6,3,1,7,4,0,2,8,5,9'.split(',')
+b_tree_post_order  = '6,3,7,4,1,8,9,5,2,0'.split(',')
 
-b_tree = mktree_by_Traversal.f_m( b_tree_front, b_tree_mid )
+b_tree = mktree_by_Traversal.pre_in( b_tree_pre_order, b_tree_in_order )
 #print(b_tree)
 
-front( b_tree ) 
-mid( b_tree )
-back( b_tree )
+pre_order( b_tree ) 
+in_order( b_tree )
+post_order( b_tree )
 
 #print( t_f )
 #print( t_m )
 #print( *t_b)
 
-b_tree = mktree_by_Traversal.b_m( b_tree_back, b_tree_mid )
+b_tree = mktree_by_Traversal.post_in( b_tree_post_order, b_tree_in_order )
 #print(b_tree)
 
-front( b_tree ) 
-mid( b_tree )
-back( b_tree )
+pre_order( b_tree ) 
+in_order( b_tree )
+post_order( b_tree )
 
 #print( *t_f )
 #print( t_m )
